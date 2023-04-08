@@ -1,16 +1,10 @@
 package com.izabelanoe.todosimple.services;
 
 import java.util.Optional;
-
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.izabelanoe.todosimple.models.User;
-import com.izabelanoe.todosimple.repositories.TaskRepository;
 import com.izabelanoe.todosimple.repositories.UserRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service
@@ -19,13 +13,6 @@ public class UserService {
     @Autowired // Construtor de interface rs
     private UserRepository userRepository;
 
-    @Autowired
-    private TaskRepository taskRepository;
-
-    /**
-     * @param id
-     * @return
-     */
     public User findById(Long id) {
         // corrigir erro de null point Exception
         Optional<User> user = this.userRepository.findById(id);
@@ -37,7 +24,6 @@ public class UserService {
     public User create(User obj) {
         obj.setId(null);
         obj = this.userRepository.save(obj);
-        this.taskRepository.saveAll(obj.getTask());
         return obj;
 
     }
@@ -50,9 +36,6 @@ public class UserService {
 
     }
 
-    /**
-     * @param id
-     */
     @Transactional
     public void delete(Long id) {
         findById(id);

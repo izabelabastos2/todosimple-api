@@ -47,7 +47,7 @@ public class User {
     @Size(groups = { CreateUser.class, UpdateUser.class }, min = 8, max = 60)
     private String password;
 
-    @OneToMany(mappedBy = "user") // quem ta mapeando é a variável user
+    @OneToMany(mappedBy = "user") // quem ta mapeando é a variável user que aparece na task
     private List<Task> task = new ArrayList<Task>();
 
     public User() {

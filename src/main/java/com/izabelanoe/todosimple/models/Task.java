@@ -24,7 +24,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
-
     private Long id;
 
     @ManyToOne // define a cardinalidade do banco -> Várias tarefas são de um usr
